@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue响应式原理</title>
+</head>
+<body>
+    
+</body>
+<script src="./index.js"></script>
+
+<script>
+    const obj = {
+        a:123,
+        b:{
+            c:123
+        }
+    }
+
+    observe(obj)
+
+    new Watcher(obj,'a')
+    new Watcher(obj,'b')
+    new Watcher(obj.b,'c')
+
+    
+
+
+
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue.js github commits example</title>
+    </style>
+    <!-- Delete ".min" for console warnings in development -->
+    <script src="../../dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+      <!-- <h1>{{title}}</h1> -->
+      <test>
+        奥术大师多
+      </test>
+      <!-- <test2 v-bind="$attrs" data="1234">
+        <div slot-scope="scope">{{scope.a}}</div> 
+        default的插槽
+      </test2> -->
+    </div>
+    <script >
+          // <!-- <test data="1234"  @hook:created="{fns:testCreated}" @hover="x++">
+          // </test> -->
+      // <test2   @click="clickTest">test</test2>
+      // <test2 v-bind="$attrs"  @click="clickTest"></test2>
+      // Vue.component('test',{
+      //   abstract:true,
+      //   render(createElement){
+      //     return this.$slots.default[0]
+      //   }
+      // })
+      Vue.component('test',{
+        // inheritAttrs:false,
+        props:['xxx'],
+        template:`<div @click="clickTest" >
+          <div>子组件</div>asd
+        </div> `,
+        methods:{
+          clickTest(){
+            console.log('click test')
+          }
+        }
+      })
+      Vue.component('test2',{
+        template:`<div @click="clickTest" >
+          <div>子组件222</div> {{name}}
+        </div> `,
+        props:['name'],
+        methods:{
+          clickTest(){
+            console.log('click test')
+          }
+        }
+      })
+      Vue.component('test3',{
+        template:`<div @click="clickTest" >
+          <div>子组件333</div>
+        </div> `,
+        methods:{
+          clickTest(){
+            console.log('click test')
+          }
+        }
+      })
+      // Vue.component('test2',function(res,rej){
+      //   setTimeout(()=>{
+      //     res({
+      //       template:`<div>
+      //         在未来会渲染的组件
+      //         </div>`
+      //     })
+      //   },1000)
+      // })
+      // Vue.component('test2',{
+      //   functional:true,
+      //   render(createElement,context){//没有创建vue实例，只能使用context访问内置方法
+      //     // 实际渲染什么还是看render函数 
+      //     return createElement('div',context.data,[context.scopedSlots.default({a:1234})])
+      //   }
+      // })
+      var app = new Vue({
+        el:"#demo",
+        data:{
+          title:'这是一个test',
+          $vv:'asd',
+          x:0,
+          aaa:[{a:123}]
+        },
+        computed:{
+          xxx(){
+            return this.x
+          }
+        },
+        watch:{
+          x(val){
+            console.log(val)
+          }
+        },
+        methods:{
+          testCreated(){
+            console.log('created')
+          },
+          hoverEvent(){
+            console.log('hover')
+          }
+        }
+        // computed:{
+        //   getTitle(){
+        //     return this.title.length
+        //   }
+        // },
+        // created(){
+        //   console.log(11111)
+        // },
+      })
+        // Vue.options.created = function(){
+        //   console.log('1234')
+        // }
+        // new Vue({
+        //   el:"#demo",
+        //   created(){
+        //     console.log(123)
+        //   }
+        // })
+        // var Test = Vue.extend({
+        //   created(){
+        //     console.log("父类")
+        //   }
+        // })
+
+        // var app = new Test({
+        //   el:"#demo",
+        //   created(){
+        //     console.log(123)
+        //   }
+        // })
+    </script>
+  </body>
+</html>
